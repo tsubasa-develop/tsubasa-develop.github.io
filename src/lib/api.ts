@@ -33,9 +33,19 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
     if (field === 'content') {
       items[field] = content;
     }
-
+    if (field === 'coverImage') {
+      items[field] = data[field] || '/assets/blog/dynamic-routing/cover.jpg';
+    }
+    if (field === 'ogImage') {
+      items[field] = data[field] || {
+        url: '/assets/blog/dynamic-routing/cover.jpg',
+      };
+    }
+    if (field === 'content') {
+      items[field] = content;
+    }
     if (typeof data[field] !== 'undefined') {
-      items[field] = data[field];
+      items[field] = data[field] || '';
     }
   });
 
