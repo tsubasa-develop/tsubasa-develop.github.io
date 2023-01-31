@@ -23,6 +23,9 @@ jobs:
           echo ${title}
           echo ${_body}
           # 新規記事生成
+          if [ -f ./_posts/${id}.md ]; then
+            rm ./_posts/${id}.md
+          fi
           touch ./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
           echo "title: '${title}'" >>./_posts/${id}.md
