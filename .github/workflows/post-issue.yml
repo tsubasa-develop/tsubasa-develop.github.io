@@ -25,8 +25,8 @@ jobs:
           # 新規記事生成
           touch ./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
-          echo "title: ${title}" >>./_posts/${id}.md
-          echo "date: ${created_at:0:10}" >>./_posts/${id}.md
+          echo "title: '${title}'" >>./_posts/${id}.md
+          echo "date: '${created_at:0:10}'" >>./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
           echo "${body}" >>./_posts/${id}.md
       - name: push
