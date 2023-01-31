@@ -44,6 +44,10 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
     if (field === 'content') {
       items[field] = content;
     }
+    if (field === 'date') {
+      // 10文字目までを取得
+      items[field] = data[field].slice(0, 10);
+    }
     if (field === 'tags') {
       items[field] = data[field] || [];
     }
