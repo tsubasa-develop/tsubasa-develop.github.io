@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+  issues:
+    types: [edited]
+
+jobs:
+  edit_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          title='${{ github.event.issue.title }}'
+          body='${{ github.event.issue.body }}'
+          body=${body//$'\r\n'/\\n}
+          body=${body//$'\n'/\\n}
+          # curl -X PATCH -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" -H "Content-Type: application/json" -d '{"title":"${{ github.event.issue.title }}","text":"${{ github.event.issue.body }}"}' https://preview.microcms.io/api/v1/gh-test/first
+          echo ${title}
+          echo ${body}
