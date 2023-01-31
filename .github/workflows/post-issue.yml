@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   issues:
-    types: [created, edited]
+    types: [opened, edited]
 
 jobs:
   edit_issue:
