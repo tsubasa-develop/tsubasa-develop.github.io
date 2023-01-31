@@ -15,14 +15,12 @@ jobs:
           id='${{ github.event.issue.number }}'
           title='${{ github.event.issue.title }}'
           body='${{ github.event.issue.body }}'
-
           # 整形
           _body=${body}
           _body=${_body//$'\r\n'/\\n}
           _body=${_body//$'\n'/\\n}
           echo ${title}
           echo ${_body}
-
           # 新規記事生成
           touch ./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
@@ -31,6 +29,8 @@ jobs:
           echo "${body}" >>./_posts/${id}.md
       - name: push
         run: |
+          git config user.name  "admin"
+          git config user.email "action@github.com"
           git add .
           git commit -m "add: new blog"
           git push origin master
