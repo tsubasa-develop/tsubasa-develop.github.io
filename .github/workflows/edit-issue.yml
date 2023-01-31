@@ -13,6 +13,6 @@ jobs:
           body='${{ github.event.issue.body }}'
           body=${body//$'\r\n'/\\n}
           body=${body//$'\n'/\\n}
-          # curl -X PATCH -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" -H "Content-Type: application/json" -d '{"title":"${{ github.event.issue.title }}","text":"${{ github.event.issue.body }}"}' https://preview.microcms.io/api/v1/gh-test/first
+          # curl -X PATCH -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" -H "Content-Type: application/json" -d '{"title":"${title}","text":"${body}' https://preview.microcms.io/api/v1/gh-test/first
           echo ${title}
           echo ${body}
