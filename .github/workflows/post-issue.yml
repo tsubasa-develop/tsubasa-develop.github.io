@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   issues:
-    types: [edited]
+    types: [created, edited]
 
 jobs:
   edit_issue:
@@ -12,6 +12,7 @@ jobs:
       - name: print
         run: |
           # 変数定義
+          created_at='${{ github.event.issue.created_at }}'
           id='${{ github.event.issue.number }}'
           title='${{ github.event.issue.title }}'
           body='${{ github.event.issue.body }}'
@@ -25,6 +26,7 @@ jobs:
           touch ./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
           echo "title: ${title}" >>./_posts/${id}.md
+          echo "date: ${created_at:0:10}" >>./_posts/${id}.md
           echo "---" >>./_posts/${id}.md
           echo "${body}" >>./_posts/${id}.md
       - name: push
