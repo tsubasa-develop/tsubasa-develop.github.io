@@ -53,6 +53,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: master
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -60,8 +62,8 @@ jobs:
           node-version: '19.x'
           cache: npm
 
-      - name: Cache
-        uses: jongwooo/next-cache@v1
+      - name: Prepare
+        run: git pull
 
       - name: Install dependencies
         run: npm ci
